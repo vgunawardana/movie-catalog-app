@@ -1,5 +1,5 @@
 
-package com.vindiltrue.movieinfoservice.models;
+package com.vindiltrue.moviecatalogueservice.models;
 
 public class Movie {
 	

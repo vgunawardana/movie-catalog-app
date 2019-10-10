@@ -14,11 +14,10 @@ import com.vindiltrue.movieinfoservice.models.Movie;
 public class MovieInfoResource {
 	
 	@RequestMapping("/{movieId}")
-	public List<Movie> getMovieInfo(@PathVariable("movieId") String movieId) {
+	public Movie getMovieInfo(@PathVariable("movieId") String movieId) {
 		
-		return Collections.singletonList(
-				new Movie(movieId,"Oz")
-		);
+				return new Movie(movieId,"Oz");
+	
 		
 	}
 
