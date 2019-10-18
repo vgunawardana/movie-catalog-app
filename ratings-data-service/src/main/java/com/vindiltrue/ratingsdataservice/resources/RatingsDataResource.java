@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vindiltrue.ratingsdataservice.models.Rating;
+import com.vindiltrue.ratingsdataservice.models.UserRating;
 
 @RestController
 @RequestMapping("/ratings")
@@ -20,14 +21,17 @@ public class RatingsDataResource {
 	}
 	
 	@RequestMapping("users/{userId}")
-	public List<Rating> getUserRating(@PathVariable("userId") String userId) {
+	public UserRating getUserRating(@PathVariable("userId") String userId) {
 		List<Rating> ratings = Arrays.asList(
 				new Rating("0001",5),
 				new Rating("0002", 4)
 				);
 		
 		
-		return ratings;
+		UserRating userRating = new UserRating();
+		userRating.setUserRatings(ratings);
+		return userRating;
+		
 	}
 
 }

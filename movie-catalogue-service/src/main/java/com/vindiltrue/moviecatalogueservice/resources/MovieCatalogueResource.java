@@ -14,6 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import com.vindiltrue.moviecatalogueservice.models.CatalogItem;
 import com.vindiltrue.moviecatalogueservice.models.Movie;
 import com.vindiltrue.moviecatalogueservice.models.Rating;
+import com.vindiltrue.moviecatalogueservice.models.UserRating;
 
 @RestController
 @RequestMapping("/catalog")
@@ -35,12 +36,15 @@ public class MovieCatalogueResource {
 		// WebClient.Builder builder = WebClient.builder();
 
 		
-		  List<Rating> ratings = Arrays.asList(
-		  
-		  new Rating("0001",4), new Rating("0002",3) );
-		 
+		
+		/*
+		 * List<Rating> ratings = Arrays.asList(
+		 * 
+		 * new Rating("0001",4), new Rating("0002",3) );
+		 */
+		UserRating userRatings = restTemplate.getForObject("http://localhost:8083/ratings/users/"+userId, UserRating.class);
 
-		return ratings.stream().map(rating -> {
+		return userRatings.getUserRatings().stream().map(rating -> {
 			Movie movie = restTemplate.getForObject("http://localhost:8082/movie/" + rating.getMovieId(), Movie.class);
 
 			/*
